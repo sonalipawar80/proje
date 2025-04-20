@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card cardStyle my-4 p-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-5 imgCol d-flex justify-content-center align-items-center p-4">
+                <div class="imgBox ">
+                  <img class="img-fluid " [src]="mobArr.images" [title]="mobArr.title" [alt]="mobArr.title">
+                </div>
+              </div>
+              <div class="col-12 col-md-7 p-4">
+                <!-- -----heading------ -->
+                <h2 class="mainHeading mb-4">{{mobArr.title}}</h2>
+                <!-------star------>
+                <div class="d-flex align-items-center my-3 star mb-4">
+                  <ng-container *ngFor="let star of arr">
+                    <span [ngClass]="star < mobArr.rating ? 'filled' : 'empty'">
+                      <mat-icon fontIcon="star"></mat-icon>
+                    </span>
+                  </ng-container>
+                  <span class="ms-2">{{mobArr.rating}} ({{mobArr.reviews_count}})</span>
+                </div>
+                
+                <p class="text-primary mb-4 pricePara">{{mobArr.total_price}}</p>
+  
+                <ul class="custom-list mb-4">
+                  <li class="d-flex align-items-center" *ngFor="let mobprod of mobArr.product_description">
+                    <mat-icon mat-mini-fab aria-hidden="false" aria-label="Correct icon" class="green-Icon"
+                      fontIcon="check_circle"></mat-icon>{{mobprod}}
+                  </li>
+                </ul>
+                  <div class="mb-4">
+                    <span class="mobprodTags m-1" *ngFor="let mobtags of mobArr.tags">{{mobtags}}</span>
+                  </div>
+                <ng-container>
+                  <div class="quntity">
+                    <button mat-raised-button class="quntityBtn" color="warn" (click)="decreaseQ()">-</button>
+                    <span>{{isQuntity}}</span>
+                    <button mat-raised-button color="primary" class="quntityBtn" (click)="increaseQ()">+</button>
+              
+  
+                  <button class="addcardBtn" mat-raised-button color="primary">
+                    <mat-icon aria-hidden="false" aria-label="Shopping cart icon" fontIcon="shopping_cart"></mat-icon>
+                    AddTo Card</button>
+  
+                    <button mat-mini-fab aria-label="Example icon-button with a heart icon" class="hearBtn ml-4"
+                      (click)="onchangeColor()" [ngClass]="{'redhear':isflaverit}">
+                      <mat-icon>favorite</mat-icon>
+                    </button>
+                  </div>
+                </ng-container>
+                  <div> 
+                  </div>
+                </div>
+              <div class="col-12 p-4" >
+                <ul  class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button 
+                    (click)="isSelectedTab='productdetails'" 
+                    [ngClass]="{
+                      active:isSelectedTab.toLowerCase()==='productdetails'}" 
+                     class="nav-link active" 
+                     id="pills-home-tab" 
+                     data-toggle="pill" 
+                     data-target="#pills-home" 
+                     type="button" role="tab" 
+                     aria-controls="pills-home" 
+                     aria-selected="true">Product Detail </button>
+                  </li>
+  
+                  <li class="nav-item" role="presentation">
+                    <button 
+                    (click)="isSelectedTab='returnpolicy'" 
+                    [ngClass]="{
+                      active:isSelectedTab.toLowerCase()==='returnpolicy'}" 
+                     class="nav-link active" 
+                     id="pills-home-tab" 
+                     data-toggle="pill" 
+                     data-target="#pills-home" 
+                     type="button" role="tab" 
+                     aria-controls="pills-home" 
+                     aria-selected="true">Return Policy</button>
+                  </li>
+  
+                  <li class="nav-item" role="presentation">
+                    <button 
+                    (click)="isSelectedTab='productspec'" [ngClass]="{
+                      active:isSelectedTab.toLowerCase()==='productspec'}"
+                     class="nav-link active" 
+                     id="pills-home-tab" 
+                     data-toggle="pill" 
+                     data-target="#pills-home" 
+                     type="button" role="tab" 
+                     aria-controls="pills-home" 
+                     aria-selected="true">Product Specification  </button>
+                  </li>
+                </ul>
+  
+                <div class="tab-content  mt-4" >
+                  <div class="tab-pane fade show active"  role="tabpanel" 
+                  aria-labelledby="pills-home-tab" 
+                  *ngIf="isSelectedTab==='productdetails'">
+                    <p>{{mobArr.product_details}}</p>
+                  </div>
+                  <div class="tab-pane fade show active"  role="tabpanel" 
+                  aria-labelledby="pills-home-tab" 
+                  *ngIf="isSelectedTab==='returnpolicy'">
+                    <p>{{mobArr.return_policy}}</p>
+                  </div>
+                  <div class="tab-pane fade show active"  role="tabpanel" 
+                  aria-labelledby="pills-home-tab" 
+                  *ngIf="isSelectedTab==='productspec'">
+                    <ul>
+                      <li *ngFor="let spec of mobArr.product_specifications">
+                        <strong>{{spec.specification_name}}</strong>: {{spec.specification_value}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
