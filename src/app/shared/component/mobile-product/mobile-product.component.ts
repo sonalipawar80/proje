@@ -10,7 +10,7 @@ export class MobileProductComponent implements OnInit {
   @Input() mobArr!:Product;
   isQuntity:number=1;
   isflaverit:boolean=false
-  arr:Array<number>=[1,2,3,4,5];
+  StarArr:Array<number>=[1,2,3,4,5];
   isSelectedTab:string='productdetails'
 
 // returnCount:Array<number>=[]

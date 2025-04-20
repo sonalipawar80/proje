@@ -14,10 +14,13 @@
                 <h2 class="mainHeading mb-4">{{mobArr.title}}</h2>
                 <!-------star------>
                 <div class="d-flex align-items-center my-3 star mb-4">
-                  <ng-container *ngFor="let star of arr">
-                    <span [ngClass]="star < mobArr.rating ? 'filled' : 'empty'">
-                      <mat-icon fontIcon="star"></mat-icon>
-                    </span>
+                  <ng-container *ngFor="let star of StarArr">
+                    <i
+                    class="text-warning"
+                    [ngClass]="
+                      mobArr.rating >= star ? 'fa-solid fa-star' : mobArr.rating >= star - 0.7
+                        ? 'fa-solid fa-star-half-alt'
+                        : 'fa-regular fa-star'"></i>
                   </ng-container>
                   <span class="ms-2">{{mobArr.rating}} ({{mobArr.reviews_count}})</span>
                 </div>
@@ -26,8 +29,7 @@
   
                 <ul class="custom-list mb-4">
                   <li class="d-flex align-items-center" *ngFor="let mobprod of mobArr.product_description">
-                    <mat-icon mat-mini-fab aria-hidden="false" aria-label="Correct icon" class="green-Icon"
-                      fontIcon="check_circle"></mat-icon>{{mobprod}}
+                    <i class="fas fa-check-circle green"></i><span class="spanlist">{{mobprod}}</span>
                   </li>
                 </ul>
                   <div class="mb-4">
